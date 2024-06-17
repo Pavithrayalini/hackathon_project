@@ -40,13 +40,13 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
  
 @RunWith(Cucumber.class)
-@CucumberOptions(features = {"Features"},
+@CucumberOptions(features = {"src/test/resources/Features"},
 glue ={"stepDefinitions","hooks"},
 plugin= {
 		"pretty","html:reports/myreport.html",
 		"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
 },
 monochrome = true)
-public class testRunner {
+public class TestRunner {
  
 }
