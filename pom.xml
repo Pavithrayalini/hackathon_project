@@ -28,7 +28,7 @@
 					<version>3.3.0</version>
 					<configuration>
 						<includes>
-							<include>**/testRunner.java</include>
+							<include>**/TestRunner.java</include>
 						</includes>
 					</configuration>
 				</plugin>
