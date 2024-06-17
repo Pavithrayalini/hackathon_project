@@ -7,7 +7,7 @@
 //@RunWith(Cucumber.class)
 //@CucumberOptions(
 //				
-//		             features = {"Features"},
+//		             features = {"src/test/resources/Features"},
 //					glue={"stepDefinitions","hooks"},
 //					plugin= {
 //								"pretty", "html:Reports/myreport.html", 
