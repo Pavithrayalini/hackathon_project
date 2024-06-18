@@ -249,7 +249,7 @@ public class campus extends basePage{
 			  
 			  System.out.println("The error message displayed");
 			  
-			  base.takeScreenshot("Error message " + i+1);
+			  base.takeScreenshot("Error message " + (i+1));
 				  
 			  Thread.sleep(3000);
 			  
@@ -285,7 +285,7 @@ public class campus extends basePage{
 			  
 			  System.out.println("The Success message displayed");
 			  
-			  base.takeScreenshot("Success message " + i+1);
+			  base.takeScreenshot("Success message " + (i+1));
 			  
 			  driver.navigate().back();
 			  

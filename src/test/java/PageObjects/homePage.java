@@ -11,9 +11,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -26,9 +29,10 @@ public class homePage extends basePage{
 	  JavascriptExecutor js;
 	  public Logger logger;
 	  public Properties p;
-	  WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(50));
+	  WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(120));
 	  List<String> Course_list = new ArrayList<>();
 	  basePage base = new basePage(driver);
+	  Actions action = new Actions(driver);
 	  String file = System.getProperty("user.dir") + "\\OutputData\\Exceloutputfile.xlsx";
 
 	   //constructor of the superclass
@@ -46,9 +50,13 @@ public class homePage extends basePage{
   
 	  //WebElement Locators
 	  
-	  @FindBy(className = "react-autosuggest__input") WebElement Search;
+	  @FindBy(xpath = "(//input[@type='text'])[1]")WebElement Search;
 	  
-	  @FindBy(xpath = "//button[@class='nostyle search-button']//div[@class='magnifier-wrapper']") WebElement Toclick;
+	  @FindBy(xpath = "(//button[@class='mobile-search-icon'])[1]") WebElement Search_Icon_Mobile;
+	  
+	  @FindBy(xpath = "(//div[@data-e2e='AutoComplete'])[2]//input[1]") WebElement Search_Mobile;
+	  
+	  @FindBy(xpath = "//button[@aria-label='Submit Search']") WebElement Toclick;
 	 	  
 	  @FindBy(xpath = "(//div[@data-testid='search-filter-group-Language']//div[@class='cds-checkboxAndRadio-labelText'])[1]") WebElement English;
 	  
@@ -80,27 +88,38 @@ public class homePage extends basePage{
 	  
    // Enter the course to be search	  
 	  
-	  public void toSearch() throws InterruptedException, IOException {
+	  public void toSearch() throws IOException {
 		  
 		  FileReader file=new FileReader(".\\src\\test\\resources\\config.Properties");
 			 p=new Properties();
 			 p.load(file);
 		  
-		  Search.sendKeys(p.getProperty("Tosearch"));
+		  try {
+			  
+			  Search.sendKeys(p.getProperty("Tosearch"));
+			  
+		  }catch(Exception e){
+			  
+			  Search_Icon_Mobile.click();
+			  
+			  action.sendKeys(Keys.ENTER).perform();
+			  
+			  Search_Mobile.sendKeys(p.getProperty("Tosearch"));
+		  }
+		  
+		  base.takeScreenshot("To Search");
 		  
 		  System.out.println("Entering search value");
-		  
-		  base.takeScreenshot("ToSearch");
-		  	
+	  	
 	  }
 	  
    // Click the search button	  
 	  
 	  public void toClick() throws InterruptedException, IOException {
+		  	  
+		   Thread.sleep(3000);
 		  
-          Toclick.click();
-		  
-		  Thread.sleep(3000);
+		   action.sendKeys(Keys.ENTER).perform();
 		  
 		  base.takeScreenshot("Before applying filter");
 		  
@@ -137,7 +156,9 @@ public class homePage extends basePage{
 	    	  
 		       String courseLevel = Courses.get(i).getText();
 		       
-		       Course_list.add(courseLevel); 	       
+		       Course_list.add(courseLevel); 
+		       
+		       System.out.println("the courses : " + Course_Click.get(i).getText());
 		  }
 	      
 	      System.out.println("No.of courses available: " +Course_list.size());
@@ -198,7 +219,7 @@ public class homePage extends basePage{
 		      
                   driver.switchTo().window(windowHandles.get(j-1));
                   
-                  Thread.sleep(2000);
+                  Thread.sleep(1000);
                   
   	          }
                   

@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 
 import utilities.ExcelUtils;
@@ -25,14 +26,17 @@ public class baseClass {
 	{
 		p = getProperties();
         String browser = p.getProperty("browser").toLowerCase();
-		
+			
 				switch(browser.toLowerCase()) 
 				{
 				case "chrome":
 			        driver=new ChromeDriver();
+			        driver.manage().window().maximize();
+			        
 			        break;
 			    case "edge":
 			    	driver=new EdgeDriver();
+			    	driver.manage().window().maximize();
 			        break;
 			    default:
 			        System.out.println("No matching browser");

@@ -35,23 +35,43 @@ public class enterpisePage extends basePage{
 	  
 	  //WEBELEMENT LOCATORS
 	  
-	  @FindBy(xpath = "(//a[normalize-space()='Solutions'])") WebElement Solutions;
+	  @FindBy(xpath = "(//a[normalize-space()='Solutions'])[2]") WebElement Solutions;
 	  
-	  @FindBy(linkText = "Coursera for Campus") WebElement Campus;
+	  @FindBy(xpath = "//a[contains(text(),'Solutions')]")WebElement Solutions_click;
+	  
+	  @FindBy(xpath = "//a[@data-track-component='navigation_mobile_menu']") WebElement Navigation_key;
+	  
+	  @FindBy(xpath = "//a[@data-track-component='navigation_mobile_menu_link_Universities']") WebElement Campus;
+	  
+	  @FindBy(xpath = "//a[@data-track-component='navigation_mega_menu_Solutions_Universities']") WebElement Course_Campus;
 	  
    //Click the solution from the enterprise page	  
 	  
 	  public void solutions() throws InterruptedException, IOException {
 		  		  
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='Solutions']")));
-		  
 		  Thread.sleep(2000);
+	  
+		  try {
+			  
+			  js.executeScript("arguments[0].style.border = '3px solid red' ",Solutions_click);
+			  
+			  base.takeScreenshot("Solutions");
+			  
+			  Solutions_click.click();
+			  
+		  }catch(Exception e) {
+			  
+		       Navigation_key.click();
 		  
-		  js.executeScript("arguments[0].style.border = '3px solid red' ",Solutions);
+		       wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//a[normalize-space()='Solutions'])[2]")));
+		 
+		       js.executeScript("arguments[0].style.border = '3px solid red' ",Solutions);
 		  
-		  base.takeScreenshot("Solutions");
+		       base.takeScreenshot("Solutions");
 		  
-		  Solutions.click();
+		       js.executeScript("arguments[0].click();", Solutions);
+		  
+		  }
 		  
 	  }
 	  
@@ -59,23 +79,28 @@ public class enterpisePage extends basePage{
 	  
 	  public void campus() throws InterruptedException, IOException {
 		  
-		  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-		  		  
 		  Thread.sleep(3000);
 		  
-		  WebElement Campus = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//p[normalize-space()='Coursera for Campus']")));
+		  try {
+			  
+			  js.executeScript("arguments[0].style.border = '3px solid red' ",Course_Campus);
+			  
+			  Course_Campus.click();
+		  }
+		  		  
+		  catch(Exception e) {
+
+		       js.executeScript("arguments[0].style.border = '3px solid red' ",Campus);
 		  
-		  js.executeScript("arguments[0].style.border = '3px solid red' ",Campus);
+		       base.takeScreenshot("Course for campus");
 		  
-		  base.takeScreenshot("Course for campus");
+		       js.executeScript("arguments[0].click();", Campus);
 		  
-		  Campus.click();
-		  
-		  Thread.sleep(2000);
+		       Thread.sleep(2000);
 	      
-		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@data-testid='block_layout'])[12]")));
+		       wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@data-testid='block_layout'])[12]")));
 	
 	  }
 	  
-	  
+	  }  
 }

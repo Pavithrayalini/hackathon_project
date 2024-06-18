@@ -65,26 +65,18 @@ public class campusPage {
       // pass the value retrived from the excel to the form inputs
         
         cp.firstname(firstname);
-        Thread.sleep(1000);
         cp.lastname(lastname);
-        Thread.sleep(1000);
         cp.email(email);
-        Thread.sleep(1000);
         cp.phone(phone);
-        Thread.sleep(1000);
         cp.institution(institution);
-        Thread.sleep(1000);
         cp.name(name);
-        Thread.sleep(1000);
         cp.job(job);
-        Thread.sleep(1000);
         cp.department(deprtment);
-        Thread.sleep(1000);
         cp.needs(needs);
-        Thread.sleep(1000);
         cp.country(country);
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         cp.state(state);
+        Thread.sleep(2000);
         cp.submit();
         
         

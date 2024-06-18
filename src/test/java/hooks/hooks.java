@@ -6,6 +6,7 @@ import java.util.Properties;
  
 import org.apache.commons.io.serialization.ValidatingObjectInputStream;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import factory.baseClass;
 import io.cucumber.java.After;

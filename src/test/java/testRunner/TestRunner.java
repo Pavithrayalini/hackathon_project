@@ -7,7 +7,7 @@
 //@RunWith(Cucumber.class)
 //@CucumberOptions(
 //				
-//		             features = {"src/test/resources/Features"},
+//		             features = {"Features"},
 //					glue={"stepDefinitions","hooks"},
 //					plugin= {
 //								"pretty", "html:Reports/myreport.html", 
@@ -46,7 +46,10 @@ plugin= {
 		"pretty","html:reports/myreport.html",
 		"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
 },
-monochrome = true)
+dryRun = false,
+monochrome = true,
+publish=true
+)
 public class TestRunner {
  
 }
