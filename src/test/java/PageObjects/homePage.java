@@ -29,7 +29,7 @@ public class homePage extends basePage{
 	  JavascriptExecutor js;
 	  public Logger logger;
 	  public Properties p;
-	  WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(120));
+	  WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(20));
 	  List<String> Course_list = new ArrayList<>();
 	  basePage base = new basePage(driver);
 	  Actions action = new Actions(driver);
@@ -117,11 +117,11 @@ public class homePage extends basePage{
 	  
 	  public void toClick() throws InterruptedException, IOException {
 		  	  
-		   Thread.sleep(3000);
+//		   Thread.sleep(2000);
 		  
 		   action.sendKeys(Keys.ENTER).perform();
 		  
-		  base.takeScreenshot("Before applying filter");
+		   base.takeScreenshot("Before applying filter");
 		  
 	  }
 	  
@@ -140,11 +140,7 @@ public class homePage extends basePage{
           Beginner.click();
 		  
 		  Thread.sleep(3000);
-		  
-		  Sortby.click();
-		  
-		  Newest.click();
- 		  
+		  	  
 		  
 	  }
 	  
@@ -158,7 +154,7 @@ public class homePage extends basePage{
 		       
 		       Course_list.add(courseLevel); 
 		       
-		       System.out.println("the courses : " + Course_Click.get(i).getText());
+		       System.out.println("The Courses : " + Course_Click.get(i).getText());
 		  }
 	      
 	      System.out.println("No.of courses available: " +Course_list.size());
@@ -187,7 +183,7 @@ public class homePage extends basePage{
   	          
   	          for(int j = windowHandles.size()-1;j>0;j--) {
   	        	  
-  	        	 driver.switchTo().window(windowHandles.get(j));
+  	        	  driver.switchTo().window(windowHandles.get(j));
   	        	 
 		          System.out.println("The course title : " + Course_Title.getText());
 		          
@@ -229,7 +225,8 @@ public class homePage extends basePage{
 		          
 	             }	
 			  
-		      }
+		      
+			}
 	        
 	  }
 	  
@@ -251,7 +248,7 @@ public class homePage extends basePage{
 		 
 		  System.out.println("Total number of languages : " + Languages.size());
 		  
-		  WebElement scroll = driver.findElement(By.xpath("//label[contains(text(),'Language')]"));
+		  WebElement scroll = driver.findElement(By.xpath("//div[contains(text(),'Language')]"));
 		  
 		  js.executeScript("arguments[0].scrollIntoView(true);",scroll);
 		  
@@ -285,7 +282,7 @@ public class homePage extends basePage{
 		  
 		  System.out.println("-------------------------------------------------------");
 		  
-		  WebElement scroll = driver.findElement(By.xpath("//label[contains(text(),'Level')]"));
+		  WebElement scroll = driver.findElement(By.xpath("//div[contains(text(),'Level')]"));
 		  
 		  js.executeScript("arguments[0].scrollIntoView(true);",scroll);
 		  

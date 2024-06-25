@@ -25,7 +25,7 @@ public class campus extends basePage{
 	  JavascriptExecutor js;
 	  public Logger logger;
 	  public Properties p;
-	  WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(50));
+	  WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(20));
 	  basePage base = new basePage(driver);
 	  public String file = System.getProperty("user.dir") + "\\OutputData\\Exceloutputfile.xlsx";
   
@@ -289,7 +289,7 @@ public class campus extends basePage{
 			  
 			  driver.navigate().back();
 			  
-		      Thread.sleep(2000);			  
+		      Thread.sleep(1000);			  
 				  
 			  }
 

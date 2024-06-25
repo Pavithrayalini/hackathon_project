@@ -17,7 +17,7 @@ public class enterpisePage extends basePage{
 
 	  JavascriptExecutor js;
 	  public Logger logger;
-	  WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(60));
+	  WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(20));
 	  basePage base = new basePage(driver);
 	  public String file = System.getProperty("user.dir") + "\\OutputData\\Exceloutputfile.xlsx";
 
@@ -49,7 +49,7 @@ public class enterpisePage extends basePage{
 	  
 	  public void solutions() throws InterruptedException, IOException {
 		  		  
-		  Thread.sleep(2000);
+//		  Thread.sleep(2000);
 	  
 		  try {
 			  
@@ -79,13 +79,17 @@ public class enterpisePage extends basePage{
 	  
 	  public void campus() throws InterruptedException, IOException {
 		  
-		  Thread.sleep(3000);
+//		  Thread.sleep(3000);
 		  
 		  try {
 			  
 			  js.executeScript("arguments[0].style.border = '3px solid red' ",Course_Campus);
 			  
+			  base.takeScreenshot("Course for campus");
+			  
 			  Course_Campus.click();
+			  
+			  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@data-testid='block_layout'])[12]")));
 		  }
 		  		  
 		  catch(Exception e) {
@@ -95,8 +99,6 @@ public class enterpisePage extends basePage{
 		       base.takeScreenshot("Course for campus");
 		  
 		       js.executeScript("arguments[0].click();", Campus);
-		  
-		       Thread.sleep(2000);
 	      
 		       wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@data-testid='block_layout'])[12]")));
 	
